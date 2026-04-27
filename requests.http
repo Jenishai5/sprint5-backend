@@ -1,0 +1,65 @@
+### Calculator API — example requests
+### Make sure the server is running first: uv run flask run --port 5001
+### Then click "Send Request" above each block.
+
+### 1. Help endpoint — should describe your API
+GET http://127.0.0.1:5001/help
+
+
+### 2. Add 3 + 9
+POST http://127.0.0.1:5001/calculate
+Content-Type: application/json
+
+{
+  "num1": 3,
+  "num2": 9,
+  "operation": "plus"
+}
+
+
+### 3. Multiply 7 * 6
+POST http://127.0.0.1:5001/calculate
+Content-Type: application/json
+
+{
+  "num1": 7,
+  "num2": 6,
+  "operation": "multiply"
+}
+
+
+### 4. Divide 8 / 2
+POST http://127.0.0.1:5001/calculate
+Content-Type: application/json
+
+{
+  "num1": 8,
+  "num2": 2,
+  "operation": "divide"
+}
+
+
+### 5. Edge case — divide by zero (should return 400 with error)
+POST http://127.0.0.1:5001/calculate
+Content-Type: application/json
+
+{
+  "num1": 10,
+  "num2": 0,
+  "operation": "divide"
+}
+
+
+### 6. Edge case — invalid operation (should return 400)
+POST http://127.0.0.1:5001/calculate
+Content-Type: application/json
+
+{
+  "num1": 1,
+  "num2": 2,
+  "operation": "banana"
+}
+
+
+### 7. Get full history — should now show all the calculations above
+GET http://127.0.0.1:5001/history
